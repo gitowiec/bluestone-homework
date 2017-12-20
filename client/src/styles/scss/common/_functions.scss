@@ -1,0 +1,64 @@
+//
+// SCSS Converters
+//
+
+// Imports
+@import "variables";
+
+//
+// Strip units
+//
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+//
+// SQRT
+//
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+//
+// Converts PX to EM
+//
+@function px2em($px, $use-rem: false) {
+  $result: strip-units($px)/$font-size;
+
+  $unit : em;
+  @if($use-rem) {
+    $unit : rem;
+  }
+
+  @return unquote($result + '') + $unit;
+}
+
+//
+// Display as PX
+//
+@function asPX($value) {
+  @return strip-units($value)*1px;
+}
+
+//
+// Convert HEX to RGBA
+//
+@function hex2rgba($hex, $percent) {
+  $r: red($hex);
+  $g: green($hex);
+  $b: blue($hex);
+  $alpha: (strip-units($percent)/100)*1;
+
+  @return rgba($r, $g, $b, $alpha);
+}
+
+
+

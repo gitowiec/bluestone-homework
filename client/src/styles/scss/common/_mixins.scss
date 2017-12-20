@@ -1,0 +1,190 @@
+//
+// SCSS Mixins
+//
+
+// Imports
+@import "functions";
+
+
+// Font mixins
+@mixin font($size: $font-size, $color: $font-color, $weight: $font-weight, $family: $font-family) {
+  @include font-size($size);
+  @include font-color($color);
+  @include font-weight($weight);
+  @include font-family($family);
+}
+
+@mixin font-size($size: $font-size) {
+  font-size: px2em($size, true);
+}
+
+@mixin font-color($color: $font-color) {
+  color: $color;
+}
+
+@mixin font-weight($weight: $font-weight) {
+  font-weight: $weight;
+}
+
+@mixin font-family($family: $font-family) {
+  font-family: $family;
+}
+
+@mixin text-hide($indent: -9999) {
+  $indent: strip-units($indent);
+  text-indent: #{$indent}px;
+}
+
+
+@mixin box-shadow-reset() {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin box-shadow-common($blur: $box-shadow-blur, $opacity: 25%) {
+  -webkit-box-shadow: 0 0 $blur 0 hex2rgba($black, $opacity);
+  -moz-box-shadow: 0 0 $blur 0 hex2rgba($black, $opacity);
+  box-shadow: 0 0 $blur 0 hex2rgba($black, $opacity);
+}
+
+// Appearance mixins
+@mixin circle($size) {
+  $size: strip-units($size) * 1px;
+  width: $size;
+  height: $size;
+  @include border-radius($size/2);
+}
+
+@mixin opacity($percent) {
+  $percent: strip-units($percent);
+  opacity: $percent/100;
+}
+
+@mixin clean-list($hardClean : false) {
+  @if($hardClean) {
+    padding: 0;
+    margin: 0;
+  }
+
+  list-style: none;
+  list-style-position: inside;
+}
+
+// Margins
+@mixin single-margin($margin: $half-spacing) {
+  &.margin-left {
+    margin-left: $margin !important;
+
+    @include media-breakpoint-up(sm) {
+      margin-left: $margin*$mobile-font-size-ratio !important;
+    }
+  }
+
+  &.margin-right {
+    margin-right: $margin !important;
+
+    @include media-breakpoint-up(sm) {
+      margin-right: $margin*$mobile-font-size-ratio !important;
+    }
+  }
+
+  &.margin-top {
+    margin-top: $margin !important;
+
+    @include media-breakpoint-up(sm) {
+      margin-top: $margin*$mobile-font-size-ratio !important;
+    }
+  }
+
+  &.margin-bottom {
+    margin-bottom: $margin !important;
+
+    @include media-breakpoint-up(sm) {
+      margin-bottom: $margin*$mobile-font-size-ratio !important;
+    }
+  }
+
+  &.margins-vertical {
+    @extend .margin-top;
+    @extend .margin-bottom;
+  }
+
+  &.margins-horizontal {
+    @extend .margin-left;
+    @extend .margin-right;
+  }
+
+  &.margins-full {
+    @extend .margins-vertical;
+    @extend .margins-horizontal;
+  }
+}
+
+@mixin generate-margins($max : 1, $base : $half-spacing) {
+  @include single-margin($base);
+  @for $ratio from 1 through $max {
+    &.margin-ratio-x#{$ratio} {
+      @include single-margin($ratio*$base);
+    }
+  }
+}
+
+// Paddings
+@mixin single-padding($padding : $half-spacing) {
+  &.padding-left {
+    padding-left: $padding;
+
+    @include media-breakpoint-up(sm) {
+      padding-left: $padding*$mobile-font-size-ratio;
+    }
+  }
+
+  &.padding-right {
+    padding-right: $padding;
+
+    @include media-breakpoint-up(sm) {
+      padding-right: $padding*$mobile-font-size-ratio;
+    }
+  }
+
+  &.padding-top {
+    padding-top: $padding;
+
+    @include media-breakpoint-up(sm) {
+      padding-top: $padding*$mobile-font-size-ratio;
+    }
+  }
+
+  &.padding-bottom {
+    padding-bottom: $padding;
+
+    @include media-breakpoint-up(sm) {
+      padding-bottom: $padding*$mobile-font-size-ratio;
+    }
+  }
+
+  &.paddings-vertical {
+    @extend .padding-top;
+    @extend .padding-bottom;
+  }
+
+  &.paddings-horizontal {
+    @extend .padding-left;
+    @extend .padding-right;
+  }
+
+  &.paddings-full {
+    @extend .paddings-vertical;
+    @extend .paddings-horizontal;
+  }
+}
+
+@mixin generate-paddings($max : 1, $base : $half-spacing) {
+  @include single-padding($base);
+  @for $ratio from 1 through $max {
+    &.padding-ratio-x#{$ratio} {
+      @include single-padding($ratio*$base);
+    }
+  }
+}

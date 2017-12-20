@@ -1,0 +1,53 @@
+//
+// SCSS Variables
+//
+$white: #ffffff;
+$black: #000000;
+
+$primary-color: #000000;
+$primary-color-secondary: #0D3EFF;
+
+$primary-font-color: $primary-color;
+
+$darken-amount: 10%;
+$hover-alpha: 75%;
+
+// Border colors
+$border-darker-amount: 10%;
+
+// Font - Weights
+$font-weight-hairline: 100;
+$font-weight-hairline-alt: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-medium-alt: 600;
+$font-weight-bold: 700;
+$font-weight-ultrabold: 900;
+
+// Font
+$font-color: $primary-font-color;
+
+$font-size: 20;
+$font-size-small: $font-size - 4;
+$font-size-smaller: $font-size - 8;
+$font-size-alt: $font-size + 4;
+$font-size-subheader: 1.5*$font-size;
+$font-size-header: 34;
+
+$mobile-font-size-ratio: 0.85;
+
+$font-weight: $font-weight-light;
+
+$font-family-standard: Arial, Sans-Serif;
+$font-family-primary: 'Open Sans', $font-family-standard; // Open Sans
+$font-family: $font-family-primary;
+
+// Dimensions
+$spacing: 30px;
+$huge-spacing: 2*$spacing;
+$half-spacing: $spacing/2;
+
+$standard-line-height: 150%;
+
+$box-shadow-blur: 2px;
